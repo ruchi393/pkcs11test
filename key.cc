@@ -26,7 +26,7 @@ namespace pkcs11 {
 namespace test {
 
 TEST_F(ReadOnlySessionTest, GenerateKeyInvalid) {
-  CK_MECHANISM mechanism = {CKM_DES_KEY_GEN, NULL_PTR, 0};
+  CK_MECHANISM mechanism = {CKM_AES_KEY_GEN, NULL_PTR, 0};
   CK_ATTRIBUTE attrs[] = {
     {CKA_LABEL, (CK_VOID_PTR)g_label, g_label_len},
     {CKA_ENCRYPT, (CK_VOID_PTR)&g_ck_true, sizeof(CK_BBOOL)},
@@ -134,7 +134,7 @@ TEST_F(ROUserSessionTest, WrapUnwrap) {
   // Unwrap to generate a key object with the same value.
   CK_OBJECT_HANDLE k3;
   CK_OBJECT_CLASS key_class = CKO_SECRET_KEY;
-  CK_KEY_TYPE key_type = CKK_DES;
+  CK_KEY_TYPE key_type = CKK_AES;
   CK_ATTRIBUTE k3_attrs[] = {
     {CKA_LABEL, (CK_VOID_PTR)g_label, g_label_len},
     {CKA_CLASS, &key_class, sizeof(key_class)},
@@ -223,7 +223,7 @@ TEST_F(ROUserSessionTest, UnwrapInvalid) {
 
   CK_OBJECT_HANDLE k3 = 0;
   CK_OBJECT_CLASS key_class = CKO_SECRET_KEY;
-  CK_KEY_TYPE key_type = CKK_DES;
+  CK_KEY_TYPE key_type = CKK_AES;
   CK_ATTRIBUTE k3_attrs[] = {
     {CKA_LABEL, (CK_VOID_PTR)g_label, g_label_len},
     {CKA_CLASS, &key_class, sizeof(key_class)},

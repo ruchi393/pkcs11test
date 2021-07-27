@@ -121,10 +121,13 @@ TEST_P(DualSecretKeyTest, DigestEncrypt) {
 }
 
 INSTANTIATE_TEST_SUITE_P(Duals, DualSecretKeyTest,
-                        ::testing::Values("DES-ECB",
+                        ::testing::Values(
+#if DES 	
+					"DES-ECB",
                                           "DES-CBC",
                                           "3DES-ECB",
                                           "3DES-CBC",
+#endif
                                           "AES-ECB",
                                           "AES-CBC"));
 
