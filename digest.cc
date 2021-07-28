@@ -170,12 +170,12 @@ TEST_P(DigestTest, CompareIncremental) {
 }
 
 TEST_P(DigestTest, DigestKey) {
+  vector<CK_ATTRIBUTE_TYPE> attrs = {CKA_ENCRYPT, CKA_DECRYPT};
+  SecretKey key(session_, attrs, CKM_AES_KEY_GEN);
+
   CK_RV rv = g_fns->C_DigestInit(session_, &mechanism_);
   SKIP_IF_UNIMPLEMENTED_RV(rv);
   EXPECT_CKR_OK(rv);
-
-  vector<CK_ATTRIBUTE_TYPE> attrs = {CKA_ENCRYPT, CKA_DECRYPT};
-  SecretKey key(session_, attrs, CKM_AES_KEY_GEN);
 
   rv = g_fns->C_DigestKey(session_, key.handle());
   if (rv == CKR_KEY_INDIGESTIBLE) {
@@ -192,12 +192,12 @@ TEST_P(DigestTest, DigestKey) {
 }
 
 TEST_P(DigestTest, DigestKeyInvalid) {
+  vector<CK_ATTRIBUTE_TYPE> attrs = {CKA_ENCRYPT, CKA_DECRYPT};
+  SecretKey key(session_, attrs, CKM_AES_KEY_GEN);
+
   CK_RV rv = g_fns->C_DigestInit(session_, &mechanism_);
   SKIP_IF_UNIMPLEMENTED_RV(rv);
   EXPECT_CKR_OK(rv);
-
-  vector<CK_ATTRIBUTE_TYPE> attrs = {CKA_ENCRYPT, CKA_DECRYPT};
-  SecretKey key(session_, attrs, CKM_AES_KEY_GEN);
 
   rv = g_fns->C_DigestKey(session_, key.handle());
   if (rv == CKR_KEY_INDIGESTIBLE) {
