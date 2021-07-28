@@ -341,6 +341,8 @@ TEST_F(PKCS11Test, TokenInit) {
     EXPECT_CKR_OK(g_fns->C_Login(session.handle(), CKU_USER, (CK_UTF8CHAR_PTR)g_user_pin, strlen(g_user_pin)));
     g_fns->C_Logout(session.handle());
   }
+
+#if 0
   // TODO(drysdale): figure this out
   // Some tokens (OpenCryptoKi) don't do anything on InitPIN.  Instead, log in with the reset user PIN and do SetPIN.
   {
@@ -355,6 +357,7 @@ TEST_F(PKCS11Test, TokenInit) {
     EXPECT_CKR_OK(g_fns->C_Login(session.handle(), CKU_USER, (CK_UTF8CHAR_PTR)g_user_pin, strlen(g_user_pin)));
     g_fns->C_Logout(session.handle());
   }
+#endif
 
 }
 
